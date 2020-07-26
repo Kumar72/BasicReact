@@ -7,6 +7,31 @@ import UserOutput from "./Components/UserOutput/UserOutput";
 
 class App extends Component {
   state = {
+    username: 'Chandan Thakur'
+  }
+
+  usernameChangeHandler = (event) => {
+    this.setState({username: event.target.value})
+  }
+
+  render() {
+    return (
+        <div className="App">
+          <UserOutput username={this.state.username}/>
+          <UserOutput username='Aryan Thkaur'/>
+          <UserInput change={this.usernameChangeHandler}
+                      currentName={this.state.username}/>
+        </div>
+    );
+  }
+}
+
+export default App;
+
+/* -- REACT BASICS INTRO LESSON --
+*
+* class App extends Component {
+  state = {
     persons: [
       {name: 'Dynamax', age:28},
       {name: 'Aryan', age:27},
@@ -63,32 +88,6 @@ class App extends Component {
     );
   }
 }
-
-export default App;
-
-/*
-* return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Learn React
-            </p>
-            <button onClick={() => this.switchNameHandler("Dynamo-mo")}>Switch Name</button>
-            <Person
-                name={this.state.persons[0].name}
-                age={this.state.persons[0].age}/>
-            <Person
-                name={this.state.persons[1].name}
-                age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, 'Dynamite')}
-            change={this.nameChangeHandler}>My Hobbies: Photography</Person>
-            <Person
-                name={this.state.persons[2].name}
-                age={this.state.persons[2].age}/>
-          </header>
-        </div>
-    );
 * */
 
 

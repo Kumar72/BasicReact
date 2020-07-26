@@ -1,10 +1,11 @@
 import React from 'react';
+import './UserOutput.css'
 
 const UserOutput = props => {
     return (
-        <div>
-            <p>{props.name}: This is the first paragraph</p>
-            <p>{props.name}: And this is the second paragraph</p>
+        <div className="UserOutput">
+            <p>username: {props.username}</p>
+            <p>{props.username}: Hello!</p>
         </div>
     )
 }

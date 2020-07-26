@@ -1,0 +1,19 @@
+.UserInput {
+    width: 60%;
+    background-color: #282c34;
+    margin: auto;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+}
+
+input {
+    color: darkred;
+    text-align: center;
+    background-color: slategrey;
+}
+
+p {
+    color: slategrey;
+}
+
