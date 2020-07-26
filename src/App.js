@@ -6,29 +6,79 @@ import UserInput from "./Components/UserInput/UserInput";
 import UserOutput from "./Components/UserOutput/UserOutput";
 
 class App extends Component {
-  state = {
-    username: 'Chandan Thakur'
-  }
+    state = {
+        persons: [
+            {name: 'Dynamax', age:28},
+            {name: 'Aryan', age:27},
+            {name: 'Gabite', age:21}
+        ],
+        otherState: 'some other value',
+        showPerson: false
+    }
 
-  usernameChangeHandler = (event) => {
-    this.setState({username: event.target.value})
-  }
+    switchNameHandler = (newName) =>{
+        //DON'T do the the Following because its mutating the code
+        this.state.persons[2].name="Garchomp";
+        this.setState({
+            persons: [
+                {name: newName, age:42},
+                {name: 'Aryan', age:27},
+                {name: 'Garchomp', age:25}
+            ]
+        })
+    }
 
-  render() {
-    return (
-        <div className="App">
-          <UserOutput username={this.state.username}/>
-          <UserOutput username='Aryan Thkaur'/>
-          <UserInput change={this.usernameChangeHandler}
-                      currentName={this.state.username}/>
-        </div>
-    );
-  }
+    nameChangeHandler = (event) => {
+        this.state.persons[2].name = "Garchomp";
+        this.setState({
+            persons: [
+                {name: 'Dynamax', age: 28},
+                {name: event.target.value, age: 27},
+                {name: 'Gabite', age: 21}
+            ]
+        })
+    }
+
+    togglePersonHandler = () => {
+        const doesShow = this.state.showPerson;
+        this.setState({showPerson: !doesShow})
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <p>
+                        Assignment #1
+                    </p>
+                    <button onClick={this.togglePersonHandler}>Switch Name</button>
+                    <div>
+                        {this.state.showPerson ?
+                            <div>
+                                <Person
+                                    name={this.state.persons[0].name}
+                                    age={this.state.persons[0].age}/>
+                                <Person
+                                    name={this.state.persons[1].name}
+                                    age={this.state.persons[1].age}
+                                    click={this.switchNameHandler.bind(this, 'Dynamite')}
+                                    change={this.nameChangeHandler}>My Hobbies: Photography</Person>
+                                <Person
+                                    name={this.state.persons[2].name}
+                                    age={this.state.persons[2].age}/>
+                            </div>
+                        : null}
+                    </div>
+                </header>
+            </div>
+        );
+    }
 }
 
 export default App;
 
-/* -- REACT BASICS INTRO LESSON --
+/* -- REACT BASICS INTRO LESSON - Initial Copy Before Assignment 1 --
 *
 * class App extends Component {
   state = {
@@ -148,4 +198,27 @@ const app = props => {
     );
 }
 
+* */
+
+/* -- Assignment 1 -- Done
+* class App extends Component {
+  state = {
+    username: 'Chandan Thakur'
+  }
+
+  usernameChangeHandler = (event) => {
+    this.setState({username: event.target.value})
+  }
+
+  render() {
+    return (
+        <div className="App">
+          <UserOutput username={this.state.username}/>
+          <UserOutput username='Aryan Thkaur'/>
+          <UserInput change={this.usernameChangeHandler}
+                      currentName={this.state.username}/>
+        </div>
+    );
+  }
+}
 * */
