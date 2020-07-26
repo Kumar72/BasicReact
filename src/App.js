@@ -45,6 +45,24 @@ class App extends Component {
     }
 
     render() {
+        let persons = null;
+        if(this.state.showPerson){
+            persons = (
+                <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}/>
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        click={this.switchNameHandler.bind(this, 'Dynamite')}
+                        change={this.nameChangeHandler}>My Hobbies: Photography</Person>
+                    <Person
+                        name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}/>
+                </div>
+            );
+        }
         return (
             <div className="App">
                 <header className="App-header">
@@ -53,23 +71,7 @@ class App extends Component {
                         Assignment #1
                     </p>
                     <button onClick={this.togglePersonHandler}>Switch Name</button>
-                    <div>
-                        {this.state.showPerson ?
-                            <div>
-                                <Person
-                                    name={this.state.persons[0].name}
-                                    age={this.state.persons[0].age}/>
-                                <Person
-                                    name={this.state.persons[1].name}
-                                    age={this.state.persons[1].age}
-                                    click={this.switchNameHandler.bind(this, 'Dynamite')}
-                                    change={this.nameChangeHandler}>My Hobbies: Photography</Person>
-                                <Person
-                                    name={this.state.persons[2].name}
-                                    age={this.state.persons[2].age}/>
-                            </div>
-                        : null}
-                    </div>
+                   {persons}
                 </header>
             </div>
         );
